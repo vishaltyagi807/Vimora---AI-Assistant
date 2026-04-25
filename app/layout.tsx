@@ -51,7 +51,7 @@ export default async function RootLayout({ children }: RootLayoutProps) {
     <html
       lang="en"
       suppressHydrationWarning
-      className={cn(spaceGrotesk.variable, commitMono.variable, 'scroll-smooth antialiased dark')}
+      className={cn(spaceGrotesk.variable, commitMono.variable, 'dark scroll-smooth antialiased')}
     >
       <head>
         {styles && <style>{styles}</style>}
@@ -68,7 +68,7 @@ export default async function RootLayout({ children }: RootLayoutProps) {
           rel="stylesheet"
         />
       </head>
-      <body className="overflow-x-hidden scanlines">
+      <body className="scanlines overflow-x-hidden">
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"

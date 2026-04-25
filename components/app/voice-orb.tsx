@@ -1,6 +1,5 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
 import { motion } from 'motion/react';
 import { type AgentState } from '@livekit/components-react';
 
@@ -55,6 +54,18 @@ const STATE_CONFIG: Record<
     label: 'SPEAKING',
     pulseSpeed: 0.8,
   },
+  'pre-connect-buffering': {
+    primaryColor: 'rgba(0, 240, 255, 0.2)',
+    secondaryColor: 'rgba(30, 63, 239, 0.12)',
+    label: 'BUFFERING',
+    pulseSpeed: 2.5,
+  },
+  failed: {
+    primaryColor: 'rgba(255, 60, 60, 0.3)',
+    secondaryColor: 'rgba(200, 0, 0, 0.15)',
+    label: 'FAILED',
+    pulseSpeed: 3,
+  },
 };
 
 function WaveformRings({ agentState }: { agentState: AgentState }) {
@@ -66,7 +77,7 @@ function WaveformRings({ agentState }: { agentState: AgentState }) {
       {[1, 2, 3].map((i) => (
         <motion.div
           key={i}
-          className="absolute rounded-full pointer-events-none"
+          className="pointer-events-none absolute rounded-full"
           style={{
             width: '100%',
             height: '100%',
@@ -164,7 +175,10 @@ export function VoiceOrb({ agentState, size = 200 }: VoiceOrbProps) {
         : 'rgba(0, 240, 255, 0.2)';
 
   return (
-    <div className="relative flex items-center justify-center" style={{ width: size, height: size }}>
+    <div
+      className="relative flex items-center justify-center"
+      style={{ width: size, height: size }}
+    >
       {/* Waveform rings */}
       <WaveformRings agentState={agentState} />
 
@@ -206,7 +220,7 @@ export function VoiceOrb({ agentState, size = 200 }: VoiceOrbProps) {
 
       {/* Core orb */}
       <motion.div
-        className="relative z-10 rounded-full flex items-center justify-center overflow-hidden"
+        className="relative z-10 flex items-center justify-center overflow-hidden rounded-full"
         style={{
           width: '60%',
           height: '60%',
@@ -261,7 +275,7 @@ export function VoiceOrb({ agentState, size = 200 }: VoiceOrbProps) {
 
       {/* State label */}
       <div
-        className="absolute font-orbitron text-center"
+        className="font-orbitron absolute text-center"
         style={{
           bottom: '-28px',
           left: 0,

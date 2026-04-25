@@ -1,7 +1,6 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-
 import { motion } from 'motion/react';
 
 interface WelcomeViewProps {
@@ -9,7 +8,14 @@ interface WelcomeViewProps {
   onStartCall: () => void;
 }
 
-interface Particle { id: number; x: number; y: number; size: number; duration: number; delay: number; }
+interface Particle {
+  id: number;
+  x: number;
+  y: number;
+  size: number;
+  duration: number;
+  delay: number;
+}
 
 function ParticleField() {
   const [particles, setParticles] = useState<Particle[]>([]);
@@ -30,7 +36,7 @@ function ParticleField() {
   if (particles.length === 0) return null;
 
   return (
-    <div className="absolute inset-0 overflow-hidden pointer-events-none">
+    <div className="pointer-events-none absolute inset-0 overflow-hidden">
       {particles.map((p) => (
         <motion.div
           key={p.id}
@@ -62,15 +68,14 @@ function ParticleField() {
 
 function VoiceOrbWelcome() {
   return (
-    <div className="relative flex items-center justify-center mb-10">
+    <div className="relative mb-10 flex items-center justify-center">
       {/* Outermost halo */}
       <motion.div
         className="absolute rounded-full"
         style={{
           width: 260,
           height: 260,
-          background:
-            'radial-gradient(circle, rgba(0,240,255,0.04) 0%, transparent 70%)',
+          background: 'radial-gradient(circle, rgba(0,240,255,0.04) 0%, transparent 70%)',
         }}
         animate={{ scale: [1, 1.08, 1] }}
         transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
@@ -196,12 +201,12 @@ export const VimoreWelcomeView = ({
   ref,
 }: React.ComponentProps<'div'> & WelcomeViewProps) => {
   return (
-    <div ref={ref} className="relative flex flex-col items-center justify-center min-h-screen px-4">
+    <div ref={ref} className="relative flex min-h-screen flex-col items-center justify-center px-4">
       <ParticleField />
 
       {/* Grid background */}
       <div
-        className="absolute inset-0 pointer-events-none"
+        className="pointer-events-none absolute inset-0"
         style={{
           backgroundImage:
             'linear-gradient(rgba(0, 240, 255, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 240, 255, 0.03) 1px, transparent 1px)',
@@ -223,17 +228,16 @@ export const VimoreWelcomeView = ({
           transition={{ delay: 0.1, duration: 0.6 }}
         >
           <h1
-            className="font-orbitron text-5xl md:text-6xl font-black tracking-[0.3em] uppercase"
+            className="font-orbitron text-5xl font-black tracking-[0.3em] uppercase md:text-6xl"
             style={{
               color: '#00f0ff',
-              textShadow:
-                '0 0 20px rgba(0, 240, 255, 0.8), 0 0 60px rgba(0, 240, 255, 0.3)',
+              textShadow: '0 0 20px rgba(0, 240, 255, 0.8), 0 0 60px rgba(0, 240, 255, 0.3)',
             }}
           >
             VIMORA
           </h1>
           <p
-            className="font-rajdhani text-sm tracking-[0.5em] uppercase mt-1"
+            className="font-rajdhani mt-1 text-sm tracking-[0.5em] uppercase"
             style={{ color: 'rgba(0, 240, 255, 0.4)' }}
           >
             AI Voice Interface
@@ -243,7 +247,7 @@ export const VimoreWelcomeView = ({
         <VoiceOrbWelcome />
 
         <motion.p
-          className="font-rajdhani text-lg mb-2 max-w-sm"
+          className="font-rajdhani mb-2 max-w-sm text-lg"
           style={{ color: 'rgba(160, 196, 255, 0.8)' }}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -252,7 +256,7 @@ export const VimoreWelcomeView = ({
           Neural voice intelligence. Real-time. Immersive.
         </motion.p>
         <motion.p
-          className="font-rajdhani text-sm mb-10 max-w-xs"
+          className="font-rajdhani mb-10 max-w-xs text-sm"
           style={{ color: 'rgba(160, 196, 255, 0.4)' }}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -265,7 +269,7 @@ export const VimoreWelcomeView = ({
         <motion.button
           onClick={onStartCall}
           id="vimora-start-btn"
-          className="relative group font-orbitron text-xs font-bold tracking-[0.3em] uppercase px-10 py-4 rounded-full overflow-hidden"
+          className="group font-orbitron relative overflow-hidden rounded-full px-10 py-4 text-xs font-bold tracking-[0.3em] uppercase"
           style={{
             background: 'transparent',
             border: '1.5px solid rgba(0, 240, 255, 0.5)',
@@ -280,26 +284,24 @@ export const VimoreWelcomeView = ({
         >
           {/* Hover glow fill */}
           <motion.div
-            className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+            className="absolute inset-0 rounded-full opacity-0 transition-opacity duration-300 group-hover:opacity-100"
             style={{
-              background:
-                'linear-gradient(135deg, rgba(0,240,255,0.15), rgba(138,43,226,0.1))',
+              background: 'linear-gradient(135deg, rgba(0,240,255,0.15), rgba(138,43,226,0.1))',
             }}
           />
           <span className="relative z-10">{startButtonText}</span>
           {/* Glow on hover */}
           <div
-            className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+            className="absolute inset-0 rounded-full opacity-0 transition-opacity duration-300 group-hover:opacity-100"
             style={{
-              boxShadow:
-                '0 0 20px rgba(0, 240, 255, 0.4), inset 0 0 20px rgba(0, 240, 255, 0.05)',
+              boxShadow: '0 0 20px rgba(0, 240, 255, 0.4), inset 0 0 20px rgba(0, 240, 255, 0.05)',
             }}
           />
         </motion.button>
 
         {/* Status indicators */}
         <motion.div
-          className="flex items-center gap-6 mt-10"
+          className="mt-10 flex items-center gap-6"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.8, duration: 0.6 }}
@@ -312,7 +314,7 @@ export const VimoreWelcomeView = ({
             <div key={stat.label} className="flex flex-col items-center gap-1">
               <div className="flex items-center gap-1.5">
                 <motion.div
-                  className="w-1.5 h-1.5 rounded-full"
+                  className="h-1.5 w-1.5 rounded-full"
                   style={{ background: '#00f0ff' }}
                   animate={{ opacity: [1, 0.3, 1] }}
                   transition={{ duration: 2, repeat: Infinity, delay: Math.random() }}

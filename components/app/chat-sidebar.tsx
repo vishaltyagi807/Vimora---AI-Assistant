@@ -1,8 +1,8 @@
 'use client';
 
-import { motion, AnimatePresence } from 'motion/react';
-import { type ReceivedMessage } from '@livekit/components-react';
 import { useEffect, useRef } from 'react';
+import { AnimatePresence, motion } from 'motion/react';
+import { type ReceivedMessage } from '@livekit/components-react';
 
 interface ChatSidebarProps {
   messages: ReceivedMessage[];
@@ -22,15 +22,15 @@ function MessageBubble({ msg }: { msg: ReceivedMessage }) {
       initial={{ opacity: 0, y: 10, scale: 0.96 }}
       animate={{ opacity: 1, y: 0, scale: 1 }}
       transition={{ duration: 0.3, ease: 'easeOut' }}
-      className={`flex flex-col mb-3 ${isUser ? 'items-end' : 'items-start'}`}
+      className={`mb-3 flex flex-col ${isUser ? 'items-end' : 'items-start'}`}
     >
       <div
-        className="flex items-center gap-2 mb-1"
+        className="mb-1 flex items-center gap-2"
         style={{ flexDirection: isUser ? 'row-reverse' : 'row' }}
       >
         {/* Avatar */}
         <div
-          className="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0"
+          className="flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full"
           style={{
             background: isUser
               ? 'linear-gradient(135deg, rgba(138,43,226,0.5), rgba(100,0,200,0.3))'
@@ -66,7 +66,7 @@ function MessageBubble({ msg }: { msg: ReceivedMessage }) {
       </div>
 
       <div
-        className="max-w-[85%] px-3 py-2 rounded-xl font-rajdhani text-sm leading-relaxed"
+        className="font-rajdhani max-w-[85%] rounded-xl px-3 py-2 text-sm leading-relaxed"
         style={{
           background: isUser
             ? 'linear-gradient(135deg, rgba(138,43,226,0.18), rgba(100,0,200,0.12))'
@@ -99,14 +99,13 @@ export function ChatSidebar({ messages, isOpen, onClose }: ChatSidebarProps) {
       {isOpen && (
         <motion.div
           key="chat-sidebar"
-          className="flex flex-col h-full overflow-hidden rounded-xl"
+          className="flex h-full flex-col overflow-hidden rounded-xl"
           style={{
             background: 'rgba(5, 8, 25, 0.75)',
             backdropFilter: 'blur(20px) saturate(180%)',
             WebkitBackdropFilter: 'blur(20px) saturate(180%)',
             border: '1px solid rgba(0, 240, 255, 0.1)',
-            boxShadow:
-              '0 0 40px rgba(0, 240, 255, 0.04), inset 0 0 40px rgba(0, 0, 0, 0.3)',
+            boxShadow: '0 0 40px rgba(0, 240, 255, 0.04), inset 0 0 40px rgba(0, 0, 0, 0.3)',
           }}
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
@@ -115,12 +114,12 @@ export function ChatSidebar({ messages, isOpen, onClose }: ChatSidebarProps) {
         >
           {/* Header */}
           <div
-            className="flex items-center justify-between px-4 py-3 flex-shrink-0"
+            className="flex flex-shrink-0 items-center justify-between px-4 py-3"
             style={{ borderBottom: '1px solid rgba(0, 240, 255, 0.08)' }}
           >
             <div className="flex items-center gap-2">
               <motion.div
-                className="w-2 h-2 rounded-full"
+                className="h-2 w-2 rounded-full"
                 style={{ background: '#00f0ff', boxShadow: '0 0 6px #00f0ff' }}
                 animate={{ opacity: [1, 0.3, 1] }}
                 transition={{ duration: 2, repeat: Infinity }}
@@ -132,7 +131,7 @@ export function ChatSidebar({ messages, isOpen, onClose }: ChatSidebarProps) {
                 CHAT LOG
               </span>
               <span
-                className="font-orbitron text-xs px-1.5 py-0.5 rounded"
+                className="font-orbitron rounded px-1.5 py-0.5 text-xs"
                 style={{
                   background: 'rgba(0, 240, 255, 0.08)',
                   color: 'rgba(0, 240, 255, 0.5)',
@@ -146,7 +145,7 @@ export function ChatSidebar({ messages, isOpen, onClose }: ChatSidebarProps) {
             <button
               id="vimora-close-chat"
               onClick={onClose}
-              className="w-6 h-6 flex items-center justify-center rounded opacity-50 hover:opacity-100 transition-opacity"
+              className="flex h-6 w-6 items-center justify-center rounded opacity-50 transition-opacity hover:opacity-100"
               style={{ color: 'rgba(0, 240, 255, 0.6)' }}
             >
               <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
@@ -163,9 +162,9 @@ export function ChatSidebar({ messages, isOpen, onClose }: ChatSidebarProps) {
           {/* Messages area */}
           <div ref={scrollRef} className="flex-1 overflow-y-auto p-4">
             {messages.length === 0 ? (
-              <div className="flex flex-col items-center justify-center h-full text-center">
+              <div className="flex h-full flex-col items-center justify-center text-center">
                 <div
-                  className="w-12 h-12 rounded-full flex items-center justify-center mb-3"
+                  className="mb-3 flex h-12 w-12 items-center justify-center rounded-full"
                   style={{
                     background: 'rgba(0, 240, 255, 0.05)',
                     border: '1px solid rgba(0, 240, 255, 0.1)',
@@ -178,13 +177,7 @@ export function ChatSidebar({ messages, isOpen, onClose }: ChatSidebarProps) {
                       strokeWidth="1.5"
                       strokeLinecap="round"
                     />
-                    <circle
-                      cx="10"
-                      cy="6"
-                      r="3"
-                      stroke="rgba(0,240,255,0.4)"
-                      strokeWidth="1.5"
-                    />
+                    <circle cx="10" cy="6" r="3" stroke="rgba(0,240,255,0.4)" strokeWidth="1.5" />
                   </svg>
                 </div>
                 <p
@@ -194,7 +187,7 @@ export function ChatSidebar({ messages, isOpen, onClose }: ChatSidebarProps) {
                   NO MESSAGES YET
                 </p>
                 <p
-                  className="font-rajdhani text-xs mt-1"
+                  className="font-rajdhani mt-1 text-xs"
                   style={{ color: 'rgba(255,255,255,0.2)' }}
                 >
                   Start speaking to begin

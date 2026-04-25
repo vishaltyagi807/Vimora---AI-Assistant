@@ -35,7 +35,8 @@ export interface AppConfig {
 export const APP_CONFIG_DEFAULTS: AppConfig = {
   companyName: 'Vimora',
   pageTitle: 'Vimora — AI Voice Interface',
-  pageDescription: 'Vimora: A futuristic AI voice assistant powered by LiveKit neural agents with real-time voice interaction.',
+  pageDescription:
+    'Vimora: A futuristic AI voice assistant powered by LiveKit neural agents with real-time voice interaction.',
 
   supportsChatInput: true,
   supportsVideoInput: true,

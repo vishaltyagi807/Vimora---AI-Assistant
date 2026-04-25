@@ -28,19 +28,12 @@ export function ViewController({ appConfig }: ViewControllerProps) {
     <AnimatePresence mode="wait">
       {!isConnected && (
         <motion.div key="welcome" {...FADE_VARIANTS} className="w-full">
-          <VimoreWelcomeView
-            startButtonText={appConfig.startButtonText}
-            onStartCall={start}
-          />
+          <VimoreWelcomeView startButtonText={appConfig.startButtonText} onStartCall={start} />
         </motion.div>
       )}
 
       {isConnected && (
-        <motion.div
-          key="session-view"
-          {...FADE_VARIANTS}
-          className="fixed inset-0"
-        >
+        <motion.div key="session-view" {...FADE_VARIANTS} className="fixed inset-0">
           <VimoreSessionView
             supportsChatInput={appConfig.supportsChatInput}
             supportsVideoInput={appConfig.supportsVideoInput}

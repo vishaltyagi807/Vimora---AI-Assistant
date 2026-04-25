@@ -18,13 +18,13 @@ function TopBar({ agentState }: { agentState: string }) {
 
   return (
     <div
-      className="absolute top-0 left-0 right-0 z-50 flex items-center justify-between px-6 py-4"
+      className="absolute top-0 right-0 left-0 z-50 flex items-center justify-between px-6 py-4"
       style={{ borderBottom: '1px solid rgba(0, 240, 255, 0.05)' }}
     >
       {/* Logo */}
       <div className="flex items-center gap-3">
         <div
-          className="w-7 h-7 rounded-full flex items-center justify-center"
+          className="flex h-7 w-7 items-center justify-center rounded-full"
           style={{
             background: 'radial-gradient(circle, rgba(0,240,255,0.3), rgba(30,63,239,0.2))',
             border: '1px solid rgba(0, 240, 255, 0.3)',
@@ -42,7 +42,7 @@ function TopBar({ agentState }: { agentState: string }) {
           </svg>
         </div>
         <span
-          className="font-orbitron font-black tracking-[0.25em] text-base"
+          className="font-orbitron text-base font-black tracking-[0.25em]"
           style={{
             color: '#00f0ff',
             textShadow: '0 0 12px rgba(0, 240, 255, 0.6)',
@@ -53,9 +53,9 @@ function TopBar({ agentState }: { agentState: string }) {
       </div>
 
       {/* Center status */}
-      <div className="hidden md:flex items-center gap-3">
+      <div className="hidden items-center gap-3 md:flex">
         <motion.div
-          className="w-1.5 h-1.5 rounded-full"
+          className="h-1.5 w-1.5 rounded-full"
           style={{
             background: isActive ? '#00f0ff' : 'rgba(100,100,120,0.5)',
             boxShadow: isActive ? '0 0 8px #00f0ff' : 'none',
@@ -77,7 +77,7 @@ function TopBar({ agentState }: { agentState: string }) {
           { label: 'LATENCY', value: '42ms' },
           { label: 'QUALITY', value: 'HD' },
         ].map((item) => (
-          <div key={item.label} className="hidden md:flex flex-col items-end gap-0.5">
+          <div key={item.label} className="hidden flex-col items-end gap-0.5 md:flex">
             <span
               className="font-orbitron font-bold"
               style={{ fontSize: '10px', color: 'rgba(0, 240, 255, 0.7)', letterSpacing: '0.1em' }}
@@ -99,7 +99,7 @@ function TopBar({ agentState }: { agentState: string }) {
 
 function BackgroundGrid() {
   return (
-    <div className="absolute inset-0 pointer-events-none overflow-hidden">
+    <div className="pointer-events-none absolute inset-0 overflow-hidden">
       {/* Hex / grid overlay */}
       <div
         className="absolute inset-0"
@@ -181,13 +181,13 @@ export function VimoreSessionView({
 
       {/* Main layout: sidebar | center | right panel */}
       <div className="absolute inset-0 flex flex-col pt-16 pb-28 md:pb-32">
-        <div className="flex flex-1 gap-3 px-3 md:px-4 overflow-hidden">
+        <div className="flex flex-1 gap-3 overflow-hidden px-3 md:px-4">
           {/* LEFT: Chat sidebar */}
           <div
-            className={`hidden md:flex flex-shrink-0 transition-all duration-300 ${chatOpen ? 'w-72' : 'w-0 overflow-hidden'}`}
+            className={`hidden flex-shrink-0 transition-all duration-300 md:flex ${chatOpen ? 'w-72' : 'w-0 overflow-hidden'}`}
           >
             {chatOpen && (
-              <div className="w-72 h-full">
+              <div className="h-full w-72">
                 <ChatSidebar
                   messages={messages}
                   isOpen={chatOpen}
@@ -198,9 +198,9 @@ export function VimoreSessionView({
           </div>
 
           {/* CENTER: Voice Orb + Visualizer */}
-          <div className="flex-1 flex flex-col items-center justify-center relative min-w-0">
+          <div className="relative flex min-w-0 flex-1 flex-col items-center justify-center">
             {/* Aura visualizer backdrop */}
-            <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+            <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
               <AgentAudioVisualizerAura
                 size="xl"
                 state={stateLabel}
@@ -222,7 +222,7 @@ export function VimoreSessionView({
             </motion.div>
 
             {/* Mobile transcript toggle */}
-            <div className="md:hidden mt-10 w-full max-w-sm">
+            <div className="mt-10 w-full max-w-sm md:hidden">
               <AnimatePresence>
                 {messages.length > 0 && (
                   <motion.div
@@ -232,7 +232,7 @@ export function VimoreSessionView({
                     className="overflow-hidden"
                   >
                     <div
-                      className="rounded-xl p-3 overflow-y-auto"
+                      className="overflow-y-auto rounded-xl p-3"
                       style={{
                         maxHeight: 120,
                         background: 'rgba(5, 8, 25, 0.8)',
@@ -247,9 +247,7 @@ export function VimoreSessionView({
                               className="font-orbitron mr-2"
                               style={{
                                 fontSize: '8px',
-                                color: isUser
-                                  ? 'rgba(138,43,226,0.6)'
-                                  : 'rgba(0,240,255,0.5)',
+                                color: isUser ? 'rgba(138,43,226,0.6)' : 'rgba(0,240,255,0.5)',
                               }}
                             >
                               {isUser ? 'YOU' : 'VIMORA'}:
@@ -269,12 +267,11 @@ export function VimoreSessionView({
               </AnimatePresence>
             </div>
           </div>
-
         </div>
       </div>
 
       {/* Bottom Control Bar */}
-      <div className="absolute bottom-0 left-0 right-0 z-50 flex justify-center pb-4 px-4">
+      <div className="absolute right-0 bottom-0 left-0 z-50 flex justify-center px-4 pb-4">
         <motion.div
           className="w-full max-w-2xl"
           initial={{ opacity: 0, y: 40 }}
@@ -282,14 +279,13 @@ export function VimoreSessionView({
           transition={{ duration: 0.5, delay: 0.3, ease: 'easeOut' }}
         >
           <div
-            className="rounded-2xl overflow-hidden"
+            className="overflow-hidden rounded-2xl"
             style={{
               background: 'rgba(5, 8, 25, 0.85)',
               backdropFilter: 'blur(24px) saturate(180%)',
               WebkitBackdropFilter: 'blur(24px) saturate(180%)',
               border: '1px solid rgba(0, 240, 255, 0.12)',
-              boxShadow:
-                '0 0 40px rgba(0, 240, 255, 0.06), 0 -1px 0 rgba(0, 240, 255, 0.08)',
+              boxShadow: '0 0 40px rgba(0, 240, 255, 0.06), 0 -1px 0 rgba(0, 240, 255, 0.08)',
             }}
           >
             <AgentControlBar
@@ -305,7 +301,7 @@ export function VimoreSessionView({
               isConnected={session.isConnected}
               onDisconnect={session.end}
               onIsChatOpenChange={setChatOpen}
-              className="border-none shadow-none bg-transparent"
+              className="border-none bg-transparent shadow-none"
             />
           </div>
         </motion.div>

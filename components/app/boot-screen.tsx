@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
+import { AnimatePresence, motion } from 'motion/react';
 
 const BOOT_LINES = [
   { text: 'VIMORA OS v4.2.1 — INITIALIZING...', delay: 0, color: '#00f0ff' },
@@ -19,7 +19,7 @@ interface BootScreenProps {
 
 function ProgressBar({ progress }: { progress: number }) {
   return (
-    <div className="w-full max-w-md mx-auto mt-8">
+    <div className="mx-auto mt-8 w-full max-w-md">
       <div
         style={{
           background: 'rgba(0, 240, 255, 0.08)',
@@ -41,7 +41,7 @@ function ProgressBar({ progress }: { progress: number }) {
         />
       </div>
       <div
-        className="mt-2 text-right font-orbitron text-xs"
+        className="font-orbitron mt-2 text-right text-xs"
         style={{ color: 'rgba(0, 240, 255, 0.5)' }}
       >
         {Math.round(progress)}%
@@ -52,10 +52,7 @@ function ProgressBar({ progress }: { progress: number }) {
 
 function HexGrid() {
   return (
-    <div
-      className="absolute inset-0 pointer-events-none overflow-hidden"
-      style={{ opacity: 0.06 }}
-    >
+    <div className="pointer-events-none absolute inset-0 overflow-hidden" style={{ opacity: 0.06 }}>
       <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
         <defs>
           <pattern id="hex" x="0" y="0" width="50" height="57.735" patternUnits="userSpaceOnUse">
@@ -75,7 +72,7 @@ function HexGrid() {
 
 function CoreOrb() {
   return (
-    <div className="relative flex items-center justify-center mb-12">
+    <div className="relative mb-12 flex items-center justify-center">
       {/* Outer ring */}
       <motion.div
         className="absolute rounded-full"
@@ -197,17 +194,16 @@ export function BootScreen({ onComplete }: BootScreenProps) {
 
           {/* Scan line */}
           <motion.div
-            className="absolute left-0 right-0 h-px pointer-events-none"
+            className="pointer-events-none absolute right-0 left-0 h-px"
             style={{
-              background:
-                'linear-gradient(90deg, transparent, rgba(0,240,255,0.4), transparent)',
+              background: 'linear-gradient(90deg, transparent, rgba(0,240,255,0.4), transparent)',
               boxShadow: '0 0 20px rgba(0, 240, 255, 0.2)',
             }}
             animate={{ top: ['0%', '100%'] }}
             transition={{ duration: 4, repeat: Infinity, ease: 'linear' }}
           />
 
-          <div className="relative z-10 flex flex-col items-center w-full max-w-2xl px-6">
+          <div className="relative z-10 flex w-full max-w-2xl flex-col items-center px-6">
             <CoreOrb />
 
             {/* Title */}
@@ -218,7 +214,7 @@ export function BootScreen({ onComplete }: BootScreenProps) {
               transition={{ duration: 0.6, delay: 0.1 }}
             >
               <h1
-                className="font-orbitron text-4xl font-black tracking-[0.25em] uppercase mb-1"
+                className="font-orbitron mb-1 text-4xl font-black tracking-[0.25em] uppercase"
                 style={{
                   color: '#00f0ff',
                   textShadow: '0 0 20px rgba(0, 240, 255, 0.8), 0 0 60px rgba(0, 240, 255, 0.3)',
@@ -236,33 +232,30 @@ export function BootScreen({ onComplete }: BootScreenProps) {
 
             {/* Terminal lines */}
             <div
-              className="w-full max-w-md rounded-sm overflow-hidden"
+              className="w-full max-w-md overflow-hidden rounded-sm"
               style={{
                 background: 'rgba(0, 240, 255, 0.03)',
                 border: '1px solid rgba(0, 240, 255, 0.1)',
               }}
             >
               <div
-                className="px-3 py-1.5 flex items-center gap-2"
+                className="flex items-center gap-2 px-3 py-1.5"
                 style={{ borderBottom: '1px solid rgba(0, 240, 255, 0.08)' }}
               >
                 <div className="flex gap-1">
                   {['#ff5f57', '#ffbd2e', '#28ca41'].map((c, i) => (
                     <div
                       key={i}
-                      className="w-2.5 h-2.5 rounded-full"
+                      className="h-2.5 w-2.5 rounded-full"
                       style={{ background: c, opacity: 0.6 }}
                     />
                   ))}
                 </div>
-                <span
-                  className="font-orbitron text-xs"
-                  style={{ color: 'rgba(0, 240, 255, 0.3)' }}
-                >
+                <span className="font-orbitron text-xs" style={{ color: 'rgba(0, 240, 255, 0.3)' }}>
                   SYSTEM_BOOT.LOG
                 </span>
               </div>
-              <div className="px-4 py-3 min-h-[180px] font-mono text-xs leading-7 space-y-0.5">
+              <div className="min-h-[180px] space-y-0.5 px-4 py-3 font-mono text-xs leading-7">
                 <AnimatePresence>
                   {BOOT_LINES.map(
                     (line, i) =>
@@ -275,9 +268,7 @@ export function BootScreen({ onComplete }: BootScreenProps) {
                           style={{
                             color: line.color,
                             textShadow:
-                              line.color === '#00f0ff'
-                                ? '0 0 8px rgba(0, 240, 255, 0.6)'
-                                : 'none',
+                              line.color === '#00f0ff' ? '0 0 8px rgba(0, 240, 255, 0.6)' : 'none',
                             fontFamily: 'Orbitron, monospace',
                             fontSize: '11px',
                           }}
