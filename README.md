@@ -1,193 +1,274 @@
-# Agent Starter for React
+# 🤖 Vimora - AI Assistant
 
-This is a starter template for [LiveKit Agents](https://docs.livekit.io/agents) that provides a simple voice interface using [Agents UI](https://livekit.io/ui) components and [LiveKit JavaScript SDK](https://github.com/livekit/client-sdk-js). It supports [voice](https://docs.livekit.io/agents/start/voice-ai), [transcriptions](https://docs.livekit.io/agents/build/text/), and [virtual avatars](https://docs.livekit.io/agents/integrations/avatar).
+> A modern, feature-rich AI voice assistant interface built with cutting-edge web technologies. Experience seamless real-time conversations with intelligent audio visualization.
 
-Also available for:
-[Android](https://github.com/livekit-examples/agent-starter-android) • [Flutter](https://github.com/livekit-examples/agent-starter-flutter) • [Swift](https://github.com/livekit-examples/agent-starter-swift) • [React Native](https://github.com/livekit-examples/agent-starter-react-native)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![TypeScript](https://img.shields.io/badge/TypeScript-96.8%25-3178C6?logo=typescript)](https://www.typescriptlang.org/)
+[![Next.js](https://img.shields.io/badge/Next.js-15.5-000000?logo=next.js)](https://nextjs.org/)
+[![React](https://img.shields.io/badge/React-19.0-61DAFB?logo=react)](https://react.dev/)
+[![LiveKit](https://img.shields.io/badge/LiveKit-Agents-FF6B6B?logo=livekit)](https://livekit.io/)
 
-<picture>
-  <source srcset="./.github/assets/readme-hero-dark.webp" media="(prefers-color-scheme: dark)">
-  <source srcset="./.github/assets/readme-hero-light.webp" media="(prefers-color-scheme: light)">
-  <img src="./.github/assets/readme-hero-light.webp" alt="App screenshot">
-</picture>
+## ✨ Features
 
-### Features:
+- **🎙️ Real-time Voice Interaction** - Engage in natural conversations with advanced AI agents
+- **📹 Video & Screen Sharing** - Stream camera feed or share your screen seamlessly
+- **🎨 Multi-Style Audio Visualizers** - 5 stunning visualization modes:
+  - Bar graphs with smooth animations
+  - Dot grid patterns
+  - Circular radial bars
+  - Oscilloscope wave visualization
+  - Shader-based aura effects
+- **🎭 Virtual Avatar Support** - Integrate custom avatars powered by Rive
+- **🌓 Dark/Light Theme** - Automatic theme detection with manual switching
+- **⚙️ Highly Customizable** - Configure branding, colors, UI text, and features
+- **🔒 Secure & Modern** - Built with industry-standard security practices
+- **📱 Responsive Design** - Works flawlessly across all devices
+- **⚡ High Performance** - Optimized with Next.js Turbopack and modern React
 
-- Real-time voice interaction with LiveKit Agents
-- Camera video streaming support
-- Screen sharing capabilities
-- Multiple audio visualizer styles (`bar`, `grid`, `radial`, `wave`, `aura`)
-- Virtual avatar integration
-- Light/dark theme switching with system preference detection
-- Customizable branding, colors, and UI text via configuration
+## 🚀 Quick Start
 
-This template is built with Next.js and is free for you to use or modify as you see fit.
+### Prerequisites
+- Node.js 18+
+- pnpm (recommended) or npm/yarn
+- LiveKit credentials (API Key, Secret, URL)
 
-### Project structure
+### Installation
 
-This starter uses the [Agents UI](https://livekit.io/ui) components for core UI elements like media controls, audio visualizers, chat transcripts, and providing session data. Shadcn installs components into `components/` folder so you can customize them like any other local component.
-
-```
-agent-starter-react/
-├── app/
-│   ├── api/
-├── components/
-│   ├── agents-ui/     - Agents UI components
-│   ├── ai-elements/   - AI Elements components
-│   ├── app/           - App-specific components
-│   ├── ui/            - Primitive shadcn/ui components
-├── fonts/
-├── hooks/
-├── lib/
-├── public/
-└── package.json
-```
-
-Business logic lives within the `components/app` folder. It's here where the application's state and behavior is managed and the various Shadcn UI components are composed together.
-
-| File                  | Description                                                                                                                                           |
-| --------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `session-view.tsx`    | Initializes the application, and LiveKit session. Renders the view controller and session UI including chat transcript, media tiles, and control bar. |
-| `view-controller.tsx` | Manages the transitions between the welcome and session views based on the LiveKit session state.                                                     |
-| `welcome-view.tsx`    | Renders the welcome UI when the LiveKit session is not connected.                                                                                     |
-| `chat-transcript.tsx` | Manages the chat transcript transitions.                                                                                                              |
-| `tile-layout.tsx`     | Manages the layout and transition of media tiles in various application states.                                                                       |
-
-### Component usage
-
-Most Agents UI components require access to a LiveKit session object for access to values like agent state or audio tracks. A Session object can be created from a [TokenSource](/reference/client-sdk-js/variables/TokenSource.html), and provided by wrapping the component in an [AgentSessionProvider](/reference/components/shadcn/component/agent-session-provider).
-
-See [`components/app/app.tsx`](./components/app/app.tsx) for an example of how this is done in this app.
-
-### Customizing components
-
-Agents UI components, like most Shadcn compopnents, take as many primitive attributes as possible. For example, the [AgentControlBar](/reference/components/shadcn/component/agent-control-bar/page.mdoc) component extends `HTMLAttributes<HTMLDivElement>`, so you can pass any props that a div supports. This makes it easy to extend the component with your own styles or functionality.
-
-You can edit any Agents UI component's source code in the `components/agents-ui` directory. For style changes, we recommend passing in tailwind classes to override the default styles. Take a look at the source code to get a sense of how to override a component's default styles.
-
-### Updating components
-
-To update the Agents UI components to the latest publication, run the following command:
-
-```bash
-pnpm shadcn:install
-```
-
-> [!NOTE]
-> The CLI will ask before overwriting any modified files so you can avoid losing any customizations you might have made.
-
-### Installing components
-
-```bash
-pnpm dlx shadcn@latest add @agents-ui/{component-name-a} @agents-ui/{component-name-b}
-```
-
-## Getting started
-
-> [!TIP]
-> If you'd like to try this application without modification, you can deploy an instance in just a few clicks with [LiveKit Cloud Sandbox](https://cloud.livekit.io/projects/p_/sandbox/templates/agent-starter-react).
-
-[![Open on LiveKit](https://img.shields.io/badge/Open%20on%20LiveKit%20Cloud-002CF2?style=for-the-badge&logo=external-link)](https://cloud.livekit.io/projects/p_/sandbox/templates/agent-starter-react)
-
-Run the following command to automatically clone this template.
+Clone and setup the project:
 
 ```bash
 lk app create --template agent-starter-react
 ```
 
-Then run the app with:
+Or manually:
 
 ```bash
+git clone https://github.com/vishaltyagi807/Vimora---AI-Assistant.git
+cd Vimora---AI-Assistant
 pnpm install
-pnpm dev
 ```
 
-And open http://localhost:3000 in your browser.
+### Configuration
 
-You'll also need an agent to speak with. Try our starter agent for [Python](https://github.com/livekit-examples/agent-starter-python), [Node.js](https://github.com/livekit-examples/agent-starter-node), or [create your own from scratch](https://docs.livekit.io/agents/start/voice-ai/).
-
-## Configuration
-
-This starter is designed to be flexible so you can adapt it to your specific agent use case. You can easily configure it to work with different types of inputs and outputs:
-
-#### Example: App configuration (`app-config.ts`)
-
-```ts
-export const APP_CONFIG_DEFAULTS: AppConfig = {
-  companyName: 'LiveKit',
-  pageTitle: 'LiveKit Voice Agent',
-  pageDescription: 'A voice agent built with LiveKit',
-
-  supportsChatInput: true,
-  supportsVideoInput: true,
-  supportsScreenShare: true,
-  isPreConnectBufferEnabled: true,
-
-  logo: '/lk-logo.svg',
-  accent: '#002cf2',
-  logoDark: '/lk-logo-dark.svg',
-  accentDark: '#1fd5f9',
-  startButtonText: 'Start call',
-
-  // optional: audio visualization configuration
-  // audioVisualizerColor: '#002cf2',
-  // audioVisualizerColorDark: '#1fd5f9',
-  // audioVisualizerType: 'bar',
-  // audioVisualizerBarCount: 5,
-  // audioVisualizerType: 'radial',
-  // audioVisualizerRadialBarCount: 24,
-  // audioVisualizerRadialRadius: 100,
-  // audioVisualizerType: 'grid',
-  // audioVisualizerGridRowCount: 25,
-  // audioVisualizerGridColumnCount: 25,
-  // audioVisualizerType: 'wave',
-  // audioVisualizerWaveLineWidth: 3,
-  // audioVisualizerType: 'aura',
-  // audioVisualizerAuraColorShift: 0.3,
-
-  // agent dispatch configuration
-  agentName: undefined,
-
-  // LiveKit Cloud Sandbox configuration
-  sandboxId: undefined,
-};
-```
-
-You can update these values in [`app-config.ts`](./app-config.ts) to customize branding, features, and UI text for your deployment.
-
-#### Audio visualizer presets
-
-Set `audioVisualizerType` in [`app-config.ts`](./app-config.ts) to switch visualizer styles:
-
-- `bar` (default): vertical bars with optional `audioVisualizerBarCount`
-- `grid`: dot grid with `audioVisualizerGridRowCount` and `audioVisualizerGridColumnCount`
-- `radial`: circular bars with `audioVisualizerRadialBarCount` and `audioVisualizerRadialRadius`
-- `wave`: oscilloscope-style wave with `audioVisualizerWaveLineWidth`
-- `aura`: shader-based aura with `audioVisualizerAuraColorShift`
-
-Use `audioVisualizerColor` to set a shared accent color across all visualizer modes.
-
-> [!NOTE]
-> The `sandboxId` is for the LiveKit Cloud Sandbox environment.
-> It is not used for local development.
-
-#### Environment Variables
-
-You'll also need to configure your LiveKit credentials in `.env.local` (copy `.env.example` if you don't have one):
+1. **Set up environment variables** (copy `.env.example` to `.env.local`):
 
 ```env
 LIVEKIT_API_KEY=your_livekit_api_key
 LIVEKIT_API_SECRET=your_livekit_api_secret
 LIVEKIT_URL=https://your-livekit-server-url
-
-# Agent dispatch (https://docs.livekit.io/agents/server/agent-dispatch)
-# Leave AGENT_NAME blank to enable automatic dispatch
-# Provide an agent name to enable explicit dispatch
-AGENT_NAME=
+AGENT_NAME=                    # Leave blank for automatic dispatch
 ```
 
-These are required for the voice agent functionality to work with your LiveKit project.
+2. **Customize app settings** in `app-config.ts`:
 
-## Contributing
+```typescript
+export const APP_CONFIG_DEFAULTS: AppConfig = {
+  companyName: 'Vimora',
+  pageTitle: 'Vimora - AI Voice Assistant',
+  pageDescription: 'Meet your intelligent AI assistant',
+  
+  supportsChatInput: true,
+  supportsVideoInput: true,
+  supportsScreenShare: true,
+  isPreConnectBufferEnabled: true,
+  
+  logo: '/vimora-logo.svg',
+  accent: '#002cf2',
+  logoDark: '/vimora-logo-dark.svg',
+  accentDark: '#1fd5f9',
+  startButtonText: 'Start Conversation',
+  
+  // Optional: Audio visualizer customization
+  audioVisualizerType: 'bar',  // 'bar' | 'grid' | 'radial' | 'wave' | 'aura'
+  audioVisualizerColor: '#002cf2',
+  
+  agentName: undefined,
+  sandboxId: undefined,
+};
+```
 
-This template is open source and we welcome contributions! Please open a PR or issue through GitHub, and don't forget to join us in the [LiveKit Community Slack](https://livekit.io/join-slack)!
+### Development
+
+Start the development server:
+
+```bash
+pnpm dev
+```
+
+Open [http://localhost:3000](http://localhost:3000) in your browser.
+
+For production build:
+
+```bash
+pnpm build
+pnpm start
+```
+
+## 📁 Project Structure
+
+```
+Vimora---AI-Assistant/
+├── app/
+│   ├── api/                    # Backend API routes
+│   └── layout.tsx              # Root layout
+├── components/
+│   ├── agents-ui/              # LiveKit Agents UI components
+│   ├── ai-elements/            # Custom AI components
+│   ├── app/                    # Core application components
+│   │   ├── session-view.tsx    # Main session interface
+│   │   ├── view-controller.tsx # View state management
+│   │   ├── welcome-view.tsx    # Onboarding screen
+│   │   ├── chat-transcript.tsx # Message history
+│   │   └── tile-layout.tsx     # Media tiles layout
+│   └── ui/                     # Shadcn/ui primitive components
+├── hooks/                      # Custom React hooks
+├── lib/                        # Utility functions & helpers
+├── fonts/                      # Custom font files
+├── public/                     # Static assets
+├── app-config.ts               # Main configuration file
+├── package.json                # Dependencies
+└── tsconfig.json               # TypeScript configuration
+```
+
+## 🎨 Audio Visualizer Presets
+
+Configure the audio visualizer in `app-config.ts`:
+
+| Type | Description | Config Options |
+|------|-------------|-----------------|
+| **bar** | Vertical animated bars | `audioVisualizerBarCount` (default: 5) |
+| **grid** | Dot matrix pattern | `audioVisualizerGridRowCount`, `audioVisualizerGridColumnCount` |
+| **radial** | Circular bar pattern | `audioVisualizerRadialBarCount`, `audioVisualizerRadialRadius` |
+| **wave** | Oscilloscope style | `audioVisualizerWaveLineWidth` |
+| **aura** | Shader-based effect | `audioVisualizerAuraColorShift` |
+
+Use `audioVisualizerColor` to set accent color across all modes.
+
+## 🔧 Available Scripts
+
+```bash
+pnpm dev              # Start development server
+pnpm build            # Build for production
+pnpm start            # Start production server
+pnpm lint             # Run ESLint
+pnpm format           # Format code with Prettier
+pnpm format:check     # Check formatting
+pnpm shadcn:install   # Update Agents UI components
+```
+
+## 📚 Key Components
+
+### SessionView (`components/app/session-view.tsx`)
+- Initializes LiveKit session
+- Manages chat transcripts and media tiles
+- Handles media controls
+
+### ViewController (`components/app/view-controller.tsx`)
+- Controls view transitions (welcome ↔ session)
+- Manages connection state
+- Handles disconnections
+
+### ChatTranscript (`components/app/chat-transcript.tsx`)
+- Displays conversation history
+- Real-time message updates
+- Smooth scroll synchronization
+
+### TileLayout (`components/app/tile-layout.tsx`)
+- Responsive media tile management
+- Automatic layout adaptation
+- Multi-participant support
+
+## 🌐 Integrate Custom Agents
+
+Choose your preferred backend language:
+
+- **[Python](https://github.com/livekit-examples/agent-starter-python)** - FastAPI-based agents
+- **[Node.js](https://github.com/livekit-examples/agent-starter-node)** - Express-based agents
+- **[Go](https://github.com/livekit-examples/agent-starter-go)** - High-performance agents
+
+Configure the agent connection in `.env.local`:
+```env
+AGENT_NAME=my-custom-agent
+```
+
+## 💻 Technology Stack
+
+| Category | Technology |
+|----------|-----------|
+| **Framework** | Next.js 15.5 |
+| **Runtime** | React 19 |
+| **Language** | TypeScript 5 |
+| **Real-time Communication** | LiveKit Client 2.17 |
+| **UI Components** | Shadcn/ui + Radix UI |
+| **Styling** | Tailwind CSS 4 |
+| **Animation** | Motion 12 |
+| **Icons** | Lucide React + Phosphor |
+| **Chat AI** | Vercel AI SDK |
+| **Code Highlighting** | Shiki |
+| **Package Manager** | pnpm 9.15 |
+
+## 🎯 Use Cases
+
+- **Customer Support** - Intelligent 24/7 support agent
+- **Virtual Assistant** - Personal productivity helper
+- **Accessibility Tool** - Voice-first interface for users with disabilities
+- **Educational Platform** - Interactive learning companion
+- **Content Creation** - AI co-writer and brainstorming partner
+- **Internal Tools** - Enterprise automation and workflows
+
+## 🤝 Contributing
+
+We welcome contributions! Here's how you can help:
+
+1. **Fork** the repository
+2. **Create** a feature branch (`git checkout -b feature/amazing-feature`)
+3. **Commit** your changes (`git commit -m 'Add amazing feature'`)
+4. **Push** to the branch (`git push origin feature/amazing-feature`)
+5. **Open** a Pull Request
+
+### Development Guidelines
+- Follow the existing code style
+- Use TypeScript for type safety
+- Add tests for new features
+- Update documentation as needed
+- Join the [LiveKit Community Slack](https://livekit.io/join-slack) for discussions
+
+## 📝 License
+
+This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) file for details.
+
+## 🙏 Acknowledgments
+
+- Built with [LiveKit Agents](https://docs.livekit.io/agents)
+- UI powered by [Shadcn/ui](https://ui.shadcn.com/)
+- Animations with [Motion](https://motion.dev/)
+- Icons from [Lucide React](https://lucide.dev/) and [Phosphor Icons](https://phosphoricons.com/)
+- Avatar support via [Rive](https://rive.app/)
+
+## 📞 Support
+
+- 📖 [LiveKit Documentation](https://docs.livekit.io/)
+- 💬 [LiveKit Community Slack](https://livekit.io/join-slack)
+- 🐛 [Report Issues](https://github.com/vishaltyagi807/Vimora---AI-Assistant/issues)
+- 💡 [Discussions](https://github.com/vishaltyagi807/Vimora---AI-Assistant/discussions)
+
+## 🚀 What's Next?
+
+- [ ] Add multiple language support
+- [ ] Custom model integration
+- [ ] Advanced analytics dashboard
+- [ ] Mobile app (React Native)
+- [ ] Voice tone customization
+- [ ] Conversation history export
+- [ ] Advanced prompt engineering UI
+
+---
+
+<div align="center">
+
+**Made with ❤️ by [Vishal Tyagi](https://github.com/vishaltyagi807)**
+
+[![GitHub followers](https://img.shields.io/github/followers/vishaltyagi807?style=social)](https://github.com/vishaltyagi807)
+[![Twitter](https://img.shields.io/badge/Twitter-@vishaltyagi807-1DA1F2?logo=twitter&style=flat)](https://twitter.com/vishaltyagi807)
+
+</div>
