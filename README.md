@@ -2,6 +2,8 @@
 
 > A modern, feature-rich AI voice assistant interface built with cutting-edge web technologies. Experience seamless real-time conversations with intelligent audio visualization.
 
+**🌐 Live Project:** [vimora.varshit.dev](https://vimora.varshit.dev)
+
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![TypeScript](https://img.shields.io/badge/TypeScript-96.8%25-3178C6?logo=typescript)](https://www.typescriptlang.org/)
 [![Next.js](https://img.shields.io/badge/Next.js-15.5-000000?logo=next.js)](https://nextjs.org/)
